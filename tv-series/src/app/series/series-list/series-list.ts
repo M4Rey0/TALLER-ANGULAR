@@ -13,6 +13,7 @@ import { SerieService } from '../serie.service';
 export class SeriesListComponent implements OnInit {
   series: Array<Serie> = [];
   promedio: number = 0;
+  selectedSerie: Serie | null = null; 
 
   constructor(private serieService: SerieService) { }
 
@@ -31,5 +32,9 @@ export class SeriesListComponent implements OnInit {
     let total = 0;
     series.forEach(serie => total += serie.seasons);
     this.promedio = total / series.length;
+  }
+
+  onSelected(serie: Serie): void {
+    this.selectedSerie = serie;
   }
 }

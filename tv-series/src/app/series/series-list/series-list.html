@@ -1,6 +1,7 @@
 <div class="container">
   <div class="row">
-    <div class="col-8 offset-2">
+    
+    <div class="col-8">
       <table class="table table-striped">
         <thead class="thead-dark">
           <tr>
@@ -13,13 +14,27 @@
         <tbody>
           <tr *ngFor="let s of series">
             <td class="font-weight-bold">{{ s.id }}</td>
-            <td style="color: #5bc0de;">{{ s.name }}</td>
+            <td style="color: #5bc0de; cursor: pointer;" (click)="onSelected(s)">
+              {{ s.name }}
+            </td>
             <td>{{ s.channel }}</td>
             <td>{{ s.seasons }}</td>
           </tr>
         </tbody>
       </table>
-      <p>Seasons average: {{ promedio }}</p>
+      <p class="mt-3">Seasons average: {{ promedio }}</p>
     </div>
+
+    <div class="col-4">
+      <div *ngIf="selectedSerie" class="card sticky-top">
+        <img [src]="selectedSerie.poster" class="card-img-top" alt="{{ selectedSerie.name }}">
+        <div class="card-body">
+          <h5 class="card-title">{{ selectedSerie.name }}</h5>
+          <p class="card-text">{{ selectedSerie.description }}</p>
+          <a [href]="selectedSerie.webpage" target="_blank" class="btn btn-primary btn-sm">Ver página web</a>
+        </div>
+      </div>
+    </div>
+
   </div>
 </div>
